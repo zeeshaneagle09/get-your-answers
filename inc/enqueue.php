@@ -21,6 +21,7 @@ function gyad_enqueue_assets() {
 	wp_enqueue_style( 'gyad-typography', GYAD_URI . '/assets/css/typography.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/typography.css' ) );
 	wp_enqueue_style( 'gyad-layout', GYAD_URI . '/assets/css/layout.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/layout.css' ) );
 	wp_enqueue_style( 'gyad-components', GYAD_URI . '/assets/css/components.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/components.css' ) );
+	wp_enqueue_style( 'gyad-design-system-premium', GYAD_URI . '/assets/css/design-system-premium.css', array( 'gyad-components' ), gyad_asset_version( 'assets/css/design-system-premium.css' ) );
 	wp_enqueue_style( 'gyad-accessibility', GYAD_URI . '/assets/css/accessibility.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/accessibility.css' ) );
 	wp_enqueue_style( 'gyad-header', GYAD_URI . '/assets/css/header.css', array( 'gyad-layout' ), gyad_asset_version( 'assets/css/header.css' ) );
 	wp_enqueue_style( 'gyad-navigation', GYAD_URI . '/assets/css/navigation.css', array( 'gyad-header' ), gyad_asset_version( 'assets/css/navigation.css' ) );
