@@ -36,6 +36,9 @@ if ( file_exists( GYAD_DIR . '/inc/single-premium.php' ) ) {
 if ( file_exists( GYAD_DIR . '/inc/single-navigation.php' ) ) {
 	require_once GYAD_DIR . '/inc/single-navigation.php';
 }
+if ( file_exists( GYAD_DIR . '/inc/performance.php' ) ) {
+	require_once GYAD_DIR . '/inc/performance.php';
+}
 
 require_once GYAD_DIR . '/inc/theme-options.php';
 
