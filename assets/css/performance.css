@@ -1,0 +1,25 @@
+/* =========================================================
+   PERFORMANCE / MEDIA HARDENING
+   ========================================================= */
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+img[width][height] {
+	max-width: 100%;
+}
+
+video,
+iframe {
+	max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+	}
+}
