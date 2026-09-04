@@ -9,14 +9,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$latest_query = new WP_Query(
-	array(
-		'post_type'           => 'post',
-		'post_status'         => 'publish',
-		'posts_per_page'      => 4,
-		'ignore_sticky_posts' => true,
-	)
-);
+$latest_posts = function_exists( 'gyad_homepage_latest_news' )
+	? gyad_homepage_latest_news( 6 )
+	: array();
+
+$news_url = get_post_type_archive_link( 'post' );
+
+if ( ! $news_url ) {
+	$news_url = get_permalink( get_option( 'page_for_posts' ) );
+}
 ?>
 
 <section class="home-latest">
@@ -27,41 +28,43 @@ $latest_query = new WP_Query(
 
 			<h2>Latest Education Updates</h2>
 
-			<a
-				class="section-heading__link"
-				href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"
-			>
-				<span>View All</span>
-				<?php echo gyad_icon( 'arrow-right' ); ?>
-			</a>
+			<?php if ( $news_url ) : ?>
+				<a
+					class="section-heading__link"
+					href="<?php echo esc_url( $news_url ); ?>"
+				>
+					<span>View All</span>
+					<?php echo gyad_icon( 'arrow-right' ); ?>
+				</a>
+			<?php endif; ?>
 
 		</div>
 
-		<?php if ( $latest_query->have_posts() ) : ?>
+		<?php if ( ! empty( $latest_posts ) ) : ?>
 
 			<div class="latest-layout">
 
 				<div class="latest-news-grid">
 
-					<?php while ( $latest_query->have_posts() ) : ?>
-
-						<?php $latest_query->the_post(); ?>
+					<?php foreach ( $latest_posts as $latest_post ) : ?>
 
 						<?php
-						get_template_part(
-							'template-parts/cards/news-card'
-						);
+						if ( ! $latest_post instanceof WP_Post ) {
+							continue;
+						}
+
+						global $post;
+						$post = $latest_post;
+						setup_postdata( $post );
 						?>
 
-					<?php endwhile; ?>
+						<?php get_template_part( 'template-parts/cards/news-card' ); ?>
+
+					<?php endforeach; ?>
 
 				</div>
 
-				<?php
-				get_template_part(
-					'template-parts/sections/trending'
-				);
-				?>
+				<?php get_template_part( 'template-parts/sections/trending' ); ?>
 
 			</div>
 
@@ -73,9 +76,7 @@ $latest_query = new WP_Query(
 					<?php echo gyad_icon( 'search' ); ?>
 				</div>
 
-				<h3>
-					Your latest education updates will appear here.
-				</h3>
+				<h3>Your latest education updates will appear here.</h3>
 
 				<p>
 					Publish your first WordPress post to start populating this section.
