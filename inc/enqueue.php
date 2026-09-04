@@ -22,11 +22,11 @@ function gyad_enqueue_assets() {
 	wp_enqueue_style( 'gyad-layout', GYAD_URI . '/assets/css/layout.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/layout.css' ) );
 	wp_enqueue_style( 'gyad-components', GYAD_URI . '/assets/css/components.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/components.css' ) );
 	wp_enqueue_style( 'gyad-design-system-premium', GYAD_URI . '/assets/css/design-system-premium.css', array( 'gyad-components' ), gyad_asset_version( 'assets/css/design-system-premium.css' ) );
-	wp_enqueue_style( 'gyad-card-premium', GYAD_URI . '/assets/css/card-premium.css', array( 'gyad-cards', 'gyad-design-system-premium' ), gyad_asset_version( 'assets/css/card-premium.css' ) );
 	wp_enqueue_style( 'gyad-accessibility', GYAD_URI . '/assets/css/accessibility.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/accessibility.css' ) );
 	wp_enqueue_style( 'gyad-header', GYAD_URI . '/assets/css/header.css', array( 'gyad-layout' ), gyad_asset_version( 'assets/css/header.css' ) );
 	wp_enqueue_style( 'gyad-navigation', GYAD_URI . '/assets/css/navigation.css', array( 'gyad-header' ), gyad_asset_version( 'assets/css/navigation.css' ) );
 	wp_enqueue_style( 'gyad-cards', GYAD_URI . '/assets/css/cards.css', array( 'gyad-components' ), gyad_asset_version( 'assets/css/cards.css' ) );
+	wp_enqueue_style( 'gyad-card-premium', GYAD_URI . '/assets/css/card-premium.css', array( 'gyad-cards', 'gyad-design-system-premium' ), gyad_asset_version( 'assets/css/card-premium.css' ) );
 	wp_enqueue_style( 'gyad-sections', GYAD_URI . '/assets/css/sections.css', array( 'gyad-components' ), gyad_asset_version( 'assets/css/sections.css' ) );
 	wp_enqueue_style( 'gyad-sidebar', GYAD_URI . '/assets/css/sidebar.css', array( 'gyad-components' ), gyad_asset_version( 'assets/css/sidebar.css' ) );
 	wp_enqueue_style( 'gyad-footer', GYAD_URI . '/assets/css/footer.css', array( 'gyad-layout' ), gyad_asset_version( 'assets/css/footer.css' ) );
@@ -39,6 +39,9 @@ function gyad_enqueue_assets() {
 	if ( is_front_page() ) {
 		wp_enqueue_style( 'gyad-homepage', GYAD_URI . '/assets/css/homepage.css', array( 'gyad-sections' ), gyad_asset_version( 'assets/css/homepage.css' ) );
 		wp_enqueue_style( 'gyad-homepage-premium', GYAD_URI . '/assets/css/homepage-premium.css', array( 'gyad-homepage' ), gyad_asset_version( 'assets/css/homepage-premium.css' ) );
+	}
+	if ( is_search() || is_404() ) {
+		wp_enqueue_style( 'gyad-search-premium', GYAD_URI . '/assets/css/search-premium.css', array( 'gyad-card-premium' ), gyad_asset_version( 'assets/css/search-premium.css' ) );
 	}
 	if ( is_singular() ) {
 		wp_enqueue_style( 'gyad-single', GYAD_URI . '/assets/css/single.css', array( 'gyad-utilities' ), gyad_asset_version( 'assets/css/single.css' ) );
