@@ -1,0 +1,7 @@
+/* =========================================================
+   HOMEPAGE PREMIUM POLISH
+   ========================================================= */
+
+.homepage-featured__lead-media:focus-visible{outline:3px solid currentColor;outline-offset:3px}.homepage-featured__side-item:focus-within{border-color:rgba(20,105,232,.35);box-shadow:var(--shadow-hover)}.homepage-featured__side-content h3 a:focus-visible{color:var(--color-blue)}.homepage-quick-access__item:focus-visible{border-color:rgba(20,105,232,.45);box-shadow:var(--shadow-hover);transform:translateY(-2px)}.homepage-section-heading__link:focus-visible{color:var(--color-blue-dark)}
+
+@media (prefers-reduced-motion:reduce){.homepage-featured__lead-media img,.homepage-featured__side-item,.homepage-featured__side-image img,.homepage-quick-access__item{transition:none!important}}
