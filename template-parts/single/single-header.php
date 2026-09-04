@@ -34,47 +34,20 @@ $view_count = function_exists( 'gyad_get_post_views' )
 	? gyad_get_post_views( $post_id )
 	: 0;
 
-$author_id = (int) get_post_field(
-	'post_author',
-	$post_id
-);
+$author_id = (int) get_post_field( 'post_author', $post_id );
+$author_name = get_the_author_meta( 'display_name', $author_id );
+$author_role = get_the_author_meta( 'description', $author_id );
+$author_avatar = get_avatar_url( $author_id, array( 'size' => 96 ) );
 
-$author_name = get_the_author_meta(
-	'display_name',
-	$author_id
-);
-
-$author_role = get_the_author_meta(
-	'description',
-	$author_id
-);
-
-$author_avatar = get_avatar_url(
-	$author_id,
-	array(
-		'size' => 96,
-	)
-);
-
-$published_timestamp = get_post_time(
-	'U',
-	true,
-	$post_id
-);
-
-$modified_timestamp = get_post_modified_time(
-	'U',
-	true,
-	$post_id
-);
-
+$published_timestamp = get_post_time( 'U', true, $post_id );
+$modified_timestamp  = get_post_modified_time( 'U', true, $post_id );
 $has_updates = (
 	$modified_timestamp &&
 	$published_timestamp &&
 	$modified_timestamp > $published_timestamp
 );
 
-$share_url = get_permalink( $post_id );
+$share_url   = get_permalink( $post_id );
 $share_title = get_the_title( $post_id );
 ?>
 
@@ -82,103 +55,39 @@ $share_title = get_the_title( $post_id );
 	<div class="article-reading-progress__bar"></div>
 </div>
 
-
 <header class="single-article-header">
 
-	<?php
-	/*
-	|--------------------------------------------------------------------------
-	| Breadcrumbs
-	|--------------------------------------------------------------------------
-	*/
-	?>
-
 	<?php if ( function_exists( 'gyad_breadcrumbs' ) ) : ?>
-
 		<div class="single-breadcrumbs">
-
 			<?php gyad_breadcrumbs(); ?>
-
 		</div>
-
 	<?php endif; ?>
 
-
-	<?php
-	/*
-	|--------------------------------------------------------------------------
-	| Type / Category
-	|--------------------------------------------------------------------------
-	*/
-	?>
-
 	<div class="single-article-header__top">
-
-		<span
-			class="single-article-header__type single-article-header__type--<?php echo esc_attr( $config['accent'] ); ?>"
-		>
+		<span class="single-article-header__type single-article-header__type--<?php echo esc_attr( $config['accent'] ); ?>">
 			<?php echo esc_html( $primary_term ? $primary_term->name : $config['label'] ); ?>
 		</span>
 
 		<?php if ( $primary_term && $primary_term->name !== $config['label'] ) : ?>
-
 			<span class="single-article-header__category">
 				<?php echo esc_html( $config['label'] ); ?>
 			</span>
-
 		<?php endif; ?>
-
 	</div>
-
-
-	<?php
-	/*
-	|--------------------------------------------------------------------------
-	| Title
-	|--------------------------------------------------------------------------
-	*/
-	?>
 
 	<h1 class="single-article-header__title">
 		<?php the_title(); ?>
 	</h1>
 
-
-	<?php
-	/*
-	|--------------------------------------------------------------------------
-	| Standfirst
-	|--------------------------------------------------------------------------
-	*/
-
-	$excerpt = get_the_excerpt( $post_id );
-
-	if ( $excerpt ) :
-	?>
-
+	<?php $excerpt = get_the_excerpt( $post_id ); ?>
+	<?php if ( $excerpt ) : ?>
 		<p class="single-article-header__excerpt">
 			<?php echo esc_html( $excerpt ); ?>
 		</p>
-
 	<?php endif; ?>
 
-
-	<?php
-	/*
-	|--------------------------------------------------------------------------
-	| Author + article metadata
-	|--------------------------------------------------------------------------
-	*/
-
-	?>
-
 	<div class="single-article-meta">
-
-		<a
-			class="single-article-meta__author"
-			href="<?php echo esc_url( get_author_posts_url( $author_id ) ); ?>"
-		>
-
+		<a class="single-article-meta__author" href="<?php echo esc_url( get_author_posts_url( $author_id ) ); ?>">
 			<img
 				class="single-article-meta__avatar"
 				src="<?php echo esc_url( $author_avatar ); ?>"
@@ -188,93 +97,54 @@ $share_title = get_the_title( $post_id );
 				loading="eager"
 				decoding="async"
 			>
-
 			<span class="single-article-meta__author-name">
-
-				<span>
-					<?php echo esc_html( $author_name ); ?>
-				</span>
-
-				<?php if ( $author_role ) : ?>
-
-					<small>
-						<?php echo esc_html( wp_trim_words( $author_role, 5, '…' ) ); ?>
-					</small>
-
-				<?php else : ?>
-
-					<small>
-						<?php echo esc_html( $config['label'] ); ?> Editor
-					</small>
-
-				<?php endif; ?>
-
+				<span><?php echo esc_html( $author_name ); ?></span>
+				<small>
+					<?php echo esc_html( $author_role ? wp_trim_words( $author_role, 5, '…' ) : $config['label'] . ' Editor' ); ?>
+				</small>
 			</span>
-
 		</a>
 
-
-		<span
-			class="single-article-meta__divider"
-			aria-hidden="true"
-		></span>
-
+		<span class="single-article-meta__divider" aria-hidden="true"></span>
 
 		<span class="single-article-meta__item">
-
 			<time datetime="<?php echo esc_attr( get_the_date( 'c', $post_id ) ); ?>">
 				<?php echo esc_html( get_the_date( get_option( 'date_format' ), $post_id ) ); ?>
 			</time>
-
 		</span>
 
-
 		<?php if ( $has_updates ) : ?>
-
 			<span class="single-article-meta__item">
-
 				<span>Updated</span>
-
 				<time datetime="<?php echo esc_attr( get_post_modified_time( 'c', true, $post_id ) ); ?>">
 					<?php echo esc_html( get_the_modified_date( get_option( 'date_format' ), $post_id ) ); ?>
 				</time>
-
 			</span>
-
 		<?php endif; ?>
-
 
 		<span class="single-article-meta__item">
 			<?php echo esc_html( function_exists( 'gyad_format_reading_time' ) ? gyad_format_reading_time( $reading_time ) : $reading_time . ' min read' ); ?>
 		</span>
 
-
 		<?php if ( $view_count > 0 ) : ?>
-
 			<span class="single-article-meta__item">
-				<?php echo esc_html( number_format_i18n( $view_count ) ); ?>
-				views
+				<?php echo esc_html( number_format_i18n( $view_count ) ); ?> views
 			</span>
-
 		<?php endif; ?>
-
 	</div>
 
+	<div class="article-share" aria-label="Article sharing actions">
+		<span class="article-share__label">Share</span>
 
-	<?php
-	/*
-	|--------------------------------------------------------------------------
-	| Share actions
-	|--------------------------------------------------------------------------
-	*/
-	?>
-
-	<div class="article-share">
-
-		<span class="article-share__label">
-			Share
-		</span>
-
+		<button
+			type="button"
+			class="article-share__button article-share__web"
+			data-share-web
+			aria-label="Share this article"
+			title="Share this article"
+		>
+			<span aria-hidden="true">↗</span>
+		</button>
 
 		<a
 			class="article-share__button"
@@ -283,10 +153,7 @@ $share_title = get_the_title( $post_id );
 			rel="noopener noreferrer"
 			aria-label="Share on Facebook"
 			title="Share on Facebook"
-		>
-			f
-		</a>
-
+		>f</a>
 
 		<a
 			class="article-share__button"
@@ -295,10 +162,7 @@ $share_title = get_the_title( $post_id );
 			rel="noopener noreferrer"
 			aria-label="Share on WhatsApp"
 			title="Share on WhatsApp"
-		>
-			WA
-		</a>
-
+		>WA</a>
 
 		<a
 			class="article-share__button"
@@ -307,10 +171,7 @@ $share_title = get_the_title( $post_id );
 			rel="noopener noreferrer"
 			aria-label="Share on X"
 			title="Share on X"
-		>
-			𝕏
-		</a>
-
+		>𝕏</a>
 
 		<button
 			type="button"
@@ -319,11 +180,18 @@ $share_title = get_the_title( $post_id );
 			aria-label="Copy link"
 			title="Copy link"
 		>
-			<span data-copy-label>
-				↗
-			</span>
+			<span data-copy-label>Copy</span>
 		</button>
 
+		<button
+			type="button"
+			class="article-share__button article-share__save"
+			data-bookmark="<?php echo esc_attr( $post_id ); ?>"
+			aria-label="Save article"
+			title="Save article"
+		>
+			<span data-bookmark-label>Save</span>
+		</button>
 	</div>
 
 </header>
