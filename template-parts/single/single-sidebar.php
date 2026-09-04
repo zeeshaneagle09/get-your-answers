@@ -80,6 +80,10 @@ $toc_items = array_slice( $toc_items, 0, 10 );
 $latest_items = function_exists( 'gyad_get_related_posts' )
 	? gyad_get_related_posts( get_post( $post_id ), 4 )
 	: array();
+
+$most_read_items = function_exists( 'gyad_get_discovery_posts' )
+	? gyad_get_discovery_posts( 4, $post_type, $post_id )
+	: array();
 ?>
 
 <aside class="single-sidebar">
@@ -152,13 +156,35 @@ $latest_items = function_exists( 'gyad_get_related_posts' )
 		<?php if ( ! empty( $latest_items ) ) : ?>
 			<div class="single-sidebar__block single-sidebar__latest">
 				<div class="single-sidebar__label">Keep exploring</div>
-				<h2 class="single-sidebar__title">Latest in <?php echo esc_html( strtolower( $config['label'] ) ); ?>s</h2>
+				<h2 class="single-sidebar__title">Related updates</h2>
 				<ul>
 					<?php foreach ( $latest_items as $latest ) : ?>
 						<li>
 							<a href="<?php echo esc_url( get_permalink( $latest ) ); ?>">
 								<strong><?php echo esc_html( get_the_title( $latest ) ); ?></strong>
 								<small><?php echo esc_html( get_the_date( get_option( 'date_format' ), $latest ) ); ?></small>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( ! empty( $most_read_items ) ) : ?>
+			<div class="single-sidebar__block single-sidebar__latest">
+				<div class="single-sidebar__label">Popular now</div>
+				<h2 class="single-sidebar__title">Most read</h2>
+				<ul>
+					<?php foreach ( $most_read_items as $popular ) : ?>
+						<li>
+							<a href="<?php echo esc_url( get_permalink( $popular ) ); ?>">
+								<strong><?php echo esc_html( get_the_title( $popular ) ); ?></strong>
+								<small>
+									<?php
+									$views = function_exists( 'gyad_get_post_views' ) ? gyad_get_post_views( $popular ) : 0;
+									echo esc_html( $views > 0 ? number_format_i18n( $views ) . ' reads' : 'Latest update' );
+									?>
+								</small>
 							</a>
 						</li>
 					<?php endforeach; ?>
