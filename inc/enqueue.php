@@ -30,6 +30,7 @@ function gyad_enqueue_assets() {
 	wp_enqueue_style( 'gyad-footer', GYAD_URI . '/assets/css/footer.css', array( 'gyad-layout' ), gyad_asset_version( 'assets/css/footer.css' ) );
 	wp_enqueue_style( 'gyad-responsive', GYAD_URI . '/assets/css/responsive.css', array( 'gyad-layout' ), gyad_asset_version( 'assets/css/responsive.css' ) );
 	wp_enqueue_style( 'gyad-utilities', GYAD_URI . '/assets/css/utilities.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/utilities.css' ) );
+	wp_enqueue_style( 'gyad-performance', GYAD_URI . '/assets/css/performance.css', array( 'gyad-utilities' ), gyad_asset_version( 'assets/css/performance.css' ) );
 
 	if ( is_front_page() ) {
 		wp_enqueue_style( 'gyad-homepage', GYAD_URI . '/assets/css/homepage.css', array( 'gyad-sections' ), gyad_asset_version( 'assets/css/homepage.css' ) );
