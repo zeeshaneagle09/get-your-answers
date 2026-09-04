@@ -1,6 +1,6 @@
 <?php
 /**
- * Enqueue theme assets.
+ * Theme asset loading.
  *
  * @package Get_Your_Answers_Daily
  */
@@ -19,20 +19,20 @@ function gyad_enqueue_assets() {
 	wp_enqueue_style( 'gyad-variables', GYAD_URI . '/assets/css/variables.css', array( 'gyad-reset' ), gyad_asset_version( 'assets/css/variables.css' ) );
 	wp_enqueue_style( 'gyad-base', GYAD_URI . '/assets/css/base.css', array( 'gyad-variables' ), gyad_asset_version( 'assets/css/base.css' ) );
 	wp_enqueue_style( 'gyad-typography', GYAD_URI . '/assets/css/typography.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/typography.css' ) );
-	wp_enqueue_style( 'gyad-layout', GYAD_URI . '/assets/css/layout.css', array( 'gyad-typography' ), gyad_asset_version( 'assets/css/layout.css' ) );
-	wp_enqueue_style( 'gyad-components', GYAD_URI . '/assets/css/components.css', array( 'gyad-layout' ), gyad_asset_version( 'assets/css/components.css' ) );
-	wp_enqueue_style( 'gyad-accessibility', GYAD_URI . '/assets/css/accessibility.css', array( 'gyad-components' ), gyad_asset_version( 'assets/css/accessibility.css' ) );
-	wp_enqueue_style( 'gyad-header', GYAD_URI . '/assets/css/header.css', array( 'gyad-accessibility' ), gyad_asset_version( 'assets/css/header.css' ) );
+	wp_enqueue_style( 'gyad-layout', GYAD_URI . '/assets/css/layout.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/layout.css' ) );
+	wp_enqueue_style( 'gyad-components', GYAD_URI . '/assets/css/components.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/components.css' ) );
+	wp_enqueue_style( 'gyad-accessibility', GYAD_URI . '/assets/css/accessibility.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/accessibility.css' ) );
+	wp_enqueue_style( 'gyad-header', GYAD_URI . '/assets/css/header.css', array( 'gyad-layout' ), gyad_asset_version( 'assets/css/header.css' ) );
 	wp_enqueue_style( 'gyad-navigation', GYAD_URI . '/assets/css/navigation.css', array( 'gyad-header' ), gyad_asset_version( 'assets/css/navigation.css' ) );
 	wp_enqueue_style( 'gyad-cards', GYAD_URI . '/assets/css/cards.css', array( 'gyad-components' ), gyad_asset_version( 'assets/css/cards.css' ) );
-	wp_enqueue_style( 'gyad-sections', GYAD_URI . '/assets/css/sections.css', array( 'gyad-cards' ), gyad_asset_version( 'assets/css/sections.css' ) );
-	wp_enqueue_style( 'gyad-sidebar', GYAD_URI . '/assets/css/sidebar.css', array( 'gyad-sections' ), gyad_asset_version( 'assets/css/sidebar.css' ) );
-	wp_enqueue_style( 'gyad-footer', GYAD_URI . '/assets/css/footer.css', array( 'gyad-sidebar' ), gyad_asset_version( 'assets/css/footer.css' ) );
-	wp_enqueue_style( 'gyad-responsive', GYAD_URI . '/assets/css/responsive.css', array( 'gyad-footer' ), gyad_asset_version( 'assets/css/responsive.css' ) );
-	wp_enqueue_style( 'gyad-utilities', GYAD_URI . '/assets/css/utilities.css', array( 'gyad-responsive' ), gyad_asset_version( 'assets/css/utilities.css' ) );
+	wp_enqueue_style( 'gyad-sections', GYAD_URI . '/assets/css/sections.css', array( 'gyad-components' ), gyad_asset_version( 'assets/css/sections.css' ) );
+	wp_enqueue_style( 'gyad-sidebar', GYAD_URI . '/assets/css/sidebar.css', array( 'gyad-components' ), gyad_asset_version( 'assets/css/sidebar.css' ) );
+	wp_enqueue_style( 'gyad-footer', GYAD_URI . '/assets/css/footer.css', array( 'gyad-layout' ), gyad_asset_version( 'assets/css/footer.css' ) );
+	wp_enqueue_style( 'gyad-responsive', GYAD_URI . '/assets/css/responsive.css', array( 'gyad-layout' ), gyad_asset_version( 'assets/css/responsive.css' ) );
+	wp_enqueue_style( 'gyad-utilities', GYAD_URI . '/assets/css/utilities.css', array( 'gyad-base' ), gyad_asset_version( 'assets/css/utilities.css' ) );
 
 	if ( is_front_page() ) {
-		wp_enqueue_style( 'gyad-homepage', GYAD_URI . '/assets/css/homepage.css', array( 'gyad-utilities' ), gyad_asset_version( 'assets/css/homepage.css' ) );
+		wp_enqueue_style( 'gyad-homepage', GYAD_URI . '/assets/css/homepage.css', array( 'gyad-sections' ), gyad_asset_version( 'assets/css/homepage.css' ) );
 	}
 
 	if ( is_singular() ) {
@@ -41,18 +41,19 @@ function gyad_enqueue_assets() {
 	}
 
 	if ( is_post_type_archive() || is_category() || is_tax() ) {
-		wp_enqueue_style( 'gyad-archive-premium', GYAD_URI . '/assets/css/archive-premium.css', array( 'gyad-utilities' ), gyad_asset_version( 'assets/css/archive-premium.css' ) );
+		wp_enqueue_style( 'gyad-archive-premium', GYAD_URI . '/assets/css/archive-premium.css', array( 'gyad-cards' ), gyad_asset_version( 'assets/css/archive-premium.css' ) );
 	}
 
 	wp_enqueue_script( 'gyad-navigation', GYAD_URI . '/assets/js/navigation.js', array(), gyad_asset_version( 'assets/js/navigation.js' ), true );
 	wp_enqueue_script( 'gyad-mobile-menu', GYAD_URI . '/assets/js/mobile-menu.js', array(), gyad_asset_version( 'assets/js/mobile-menu.js' ), true );
 
-	if ( is_search() || is_front_page() || is_post_type_archive() ) {
+	if ( is_search() || is_front_page() || is_post_type_archive() || is_category() || is_tax() ) {
 		wp_enqueue_script( 'gyad-search', GYAD_URI . '/assets/js/search.js', array(), gyad_asset_version( 'assets/js/search.js' ), true );
 	}
 
 	if ( is_singular() ) {
 		wp_enqueue_script( 'gyad-single', GYAD_URI . '/assets/js/single.js', array(), gyad_asset_version( 'assets/js/single.js' ), true );
+		wp_enqueue_script( 'gyad-single-premium-2', GYAD_URI . '/assets/js/single-premium-2.js', array( 'gyad-single' ), gyad_asset_version( 'assets/js/single-premium-2.js' ), true );
 	}
 
 	wp_enqueue_script( 'gyad-main', GYAD_URI . '/assets/js/main.js', array(), gyad_asset_version( 'assets/js/main.js' ), true );
@@ -61,7 +62,7 @@ function gyad_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'gyad_enqueue_assets' );
 
 function gyad_defer_theme_scripts( $tag, $handle, $src ) {
-	$defer_scripts = array( 'gyad-navigation', 'gyad-mobile-menu', 'gyad-search', 'gyad-single', 'gyad-main' );
+	$defer_scripts = array( 'gyad-navigation', 'gyad-mobile-menu', 'gyad-search', 'gyad-single', 'gyad-single-premium-2', 'gyad-main' );
 	if ( ! in_array( $handle, $defer_scripts, true ) ) {
 		return $tag;
 	}
@@ -69,9 +70,3 @@ function gyad_defer_theme_scripts( $tag, $handle, $src ) {
 }
 
 add_filter( 'script_loader_tag', 'gyad_defer_theme_scripts', 10, 3 );
-
-function gyad_resource_hints( $urls, $relation_type ) {
-	return $urls;
-}
-
-add_filter( 'wp_resource_hints', 'gyad_resource_hints', 10, 2 );
