@@ -7,9 +7,7 @@
  * @package Get_Your_Answers_Daily
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 define( 'GYAD_VERSION', '1.0.0' );
 define( 'GYAD_DIR', get_template_directory() );
@@ -27,36 +25,12 @@ require_once GYAD_DIR . '/inc/homepage.php';
 require_once GYAD_DIR . '/inc/queries.php';
 require_once GYAD_DIR . '/inc/search.php';
 
-if ( file_exists( GYAD_DIR . '/inc/single.php' ) ) {
-	require_once GYAD_DIR . '/inc/single.php';
-}
-if ( file_exists( GYAD_DIR . '/inc/single-premium.php' ) ) {
-	require_once GYAD_DIR . '/inc/single-premium.php';
-}
-if ( file_exists( GYAD_DIR . '/inc/single-navigation.php' ) ) {
-	require_once GYAD_DIR . '/inc/single-navigation.php';
-}
-if ( file_exists( GYAD_DIR . '/inc/performance.php' ) ) {
-	require_once GYAD_DIR . '/inc/performance.php';
-}
-if ( file_exists( GYAD_DIR . '/inc/recommendations.php' ) ) {
-	require_once GYAD_DIR . '/inc/recommendations.php';
-}
-if ( file_exists( GYAD_DIR . '/inc/accessibility.php' ) ) {
-	require_once GYAD_DIR . '/inc/accessibility.php';
+foreach ( array( 'single.php', 'single-premium.php', 'single-navigation.php', 'performance.php', 'recommendations.php', 'accessibility.php', 'related-intelligence.php' ) as $gyad_inc_file ) {
+	if ( file_exists( GYAD_DIR . '/inc/' . $gyad_inc_file ) ) require_once GYAD_DIR . '/inc/' . $gyad_inc_file;
 }
 
 require_once GYAD_DIR . '/inc/theme-options.php';
 
-if ( file_exists( GYAD_DIR . '/inc/navigation.php' ) ) {
-	require_once GYAD_DIR . '/inc/navigation.php';
-}
-if ( file_exists( GYAD_DIR . '/inc/widgets.php' ) ) {
-	require_once GYAD_DIR . '/inc/widgets.php';
-}
-if ( file_exists( GYAD_DIR . '/inc/seo.php' ) ) {
-	require_once GYAD_DIR . '/inc/seo.php';
-}
-if ( file_exists( GYAD_DIR . '/inc/seo-premium.php' ) ) {
-	require_once GYAD_DIR . '/inc/seo-premium.php';
+foreach ( array( 'navigation.php', 'widgets.php', 'seo.php', 'seo-premium.php' ) as $gyad_optional_file ) {
+	if ( file_exists( GYAD_DIR . '/inc/' . $gyad_optional_file ) ) require_once GYAD_DIR . '/inc/' . $gyad_optional_file;
 }
