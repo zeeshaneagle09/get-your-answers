@@ -25,7 +25,7 @@ require_once GYAD_DIR . '/inc/homepage.php';
 require_once GYAD_DIR . '/inc/queries.php';
 require_once GYAD_DIR . '/inc/search.php';
 
-foreach ( array( 'single.php', 'single-premium.php', 'single-navigation.php', 'article-author-source.php', 'article-status.php', 'performance.php', 'recommendations.php', 'accessibility.php', 'related-intelligence.php' ) as $gyad_inc_file ) {
+foreach ( array( 'single.php', 'single-premium.php', 'single-navigation.php', 'article-author-source.php', 'article-status.php', 'article-type-intelligence.php', 'performance.php', 'recommendations.php', 'accessibility.php', 'related-intelligence.php' ) as $gyad_inc_file ) {
 	if ( file_exists( GYAD_DIR . '/inc/' . $gyad_inc_file ) ) require_once GYAD_DIR . '/inc/' . $gyad_inc_file;
 }
 
