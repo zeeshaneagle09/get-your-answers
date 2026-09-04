@@ -42,6 +42,9 @@ if ( file_exists( GYAD_DIR . '/inc/performance.php' ) ) {
 if ( file_exists( GYAD_DIR . '/inc/recommendations.php' ) ) {
 	require_once GYAD_DIR . '/inc/recommendations.php';
 }
+if ( file_exists( GYAD_DIR . '/inc/accessibility.php' ) ) {
+	require_once GYAD_DIR . '/inc/accessibility.php';
+}
 
 require_once GYAD_DIR . '/inc/theme-options.php';
 
