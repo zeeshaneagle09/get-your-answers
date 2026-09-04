@@ -36,6 +36,7 @@ function gyad_enqueue_assets() {
 
 	if ( is_front_page() ) {
 		wp_enqueue_style( 'gyad-homepage', GYAD_URI . '/assets/css/homepage.css', array( 'gyad-sections' ), gyad_asset_version( 'assets/css/homepage.css' ) );
+		wp_enqueue_style( 'gyad-homepage-premium', GYAD_URI . '/assets/css/homepage-premium.css', array( 'gyad-homepage' ), gyad_asset_version( 'assets/css/homepage-premium.css' ) );
 	}
 	if ( is_singular() ) {
 		wp_enqueue_style( 'gyad-single', GYAD_URI . '/assets/css/single.css', array( 'gyad-utilities' ), gyad_asset_version( 'assets/css/single.css' ) );
