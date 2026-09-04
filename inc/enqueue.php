@@ -31,6 +31,7 @@ function gyad_enqueue_assets() {
 		wp_enqueue_style( 'gyad-single-navigation-premium', GYAD_URI . '/assets/css/single-navigation-premium.css', array( 'gyad-single-premium-2' ), gyad_asset_version( 'assets/css/single-navigation-premium.css' ) );
 		wp_enqueue_style( 'gyad-article-continuation-premium', GYAD_URI . '/assets/css/article-continuation-premium.css', array( 'gyad-single-navigation-premium' ), gyad_asset_version( 'assets/css/article-continuation-premium.css' ) );
 		wp_enqueue_style( 'gyad-read-next-premium', GYAD_URI . '/assets/css/read-next-premium.css', array( 'gyad-article-continuation-premium' ), gyad_asset_version( 'assets/css/read-next-premium.css' ) );
+		wp_enqueue_style( 'gyad-article-author-source-premium', GYAD_URI . '/assets/css/article-author-source-premium.css', array( 'gyad-read-next-premium' ), gyad_asset_version( 'assets/css/article-author-source-premium.css' ) );
 	}
 	if ( is_post_type_archive() || is_category() || is_tax() ) wp_enqueue_style( 'gyad-archive-premium', GYAD_URI . '/assets/css/archive-premium.css', array( 'gyad-cards' ), gyad_asset_version( 'assets/css/archive-premium.css' ) );
 	if ( is_author() ) wp_enqueue_style( 'gyad-author-premium', GYAD_URI . '/assets/css/author-premium.css', array( 'gyad-cards' ), gyad_asset_version( 'assets/css/author-premium.css' ) );
