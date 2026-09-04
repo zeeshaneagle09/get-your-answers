@@ -47,6 +47,7 @@ function gyad_enqueue_assets() {
 		wp_enqueue_style( 'gyad-single', GYAD_URI . '/assets/css/single.css', array( 'gyad-utilities' ), gyad_asset_version( 'assets/css/single.css' ) );
 		wp_enqueue_style( 'gyad-single-premium-2', GYAD_URI . '/assets/css/single-premium-2.css', array( 'gyad-single' ), gyad_asset_version( 'assets/css/single-premium-2.css' ) );
 		wp_enqueue_style( 'gyad-single-navigation-premium', GYAD_URI . '/assets/css/single-navigation-premium.css', array( 'gyad-single-premium-2' ), gyad_asset_version( 'assets/css/single-navigation-premium.css' ) );
+		wp_enqueue_style( 'gyad-article-continuation-premium', GYAD_URI . '/assets/css/article-continuation-premium.css', array( 'gyad-single-navigation-premium' ), gyad_asset_version( 'assets/css/article-continuation-premium.css' ) );
 	}
 	if ( is_post_type_archive() || is_category() || is_tax() ) {
 		wp_enqueue_style( 'gyad-archive-premium', GYAD_URI . '/assets/css/archive-premium.css', array( 'gyad-cards' ), gyad_asset_version( 'assets/css/archive-premium.css' ) );
