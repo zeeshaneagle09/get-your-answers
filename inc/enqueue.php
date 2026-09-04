@@ -37,6 +37,7 @@ function gyad_enqueue_assets() {
 
 	if ( is_singular() ) {
 		wp_enqueue_style( 'gyad-single', GYAD_URI . '/assets/css/single.css', array( 'gyad-utilities' ), gyad_asset_version( 'assets/css/single.css' ) );
+		wp_enqueue_style( 'gyad-single-premium-2', GYAD_URI . '/assets/css/single-premium-2.css', array( 'gyad-single' ), gyad_asset_version( 'assets/css/single-premium-2.css' ) );
 	}
 
 	if ( is_post_type_archive() || is_category() || is_tax() ) {
@@ -60,18 +61,10 @@ function gyad_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'gyad_enqueue_assets' );
 
 function gyad_defer_theme_scripts( $tag, $handle, $src ) {
-	$defer_scripts = array(
-		'gyad-navigation',
-		'gyad-mobile-menu',
-		'gyad-search',
-		'gyad-single',
-		'gyad-main',
-	);
-
+	$defer_scripts = array( 'gyad-navigation', 'gyad-mobile-menu', 'gyad-search', 'gyad-single', 'gyad-main' );
 	if ( ! in_array( $handle, $defer_scripts, true ) ) {
 		return $tag;
 	}
-
 	return sprintf( '<script src="%s" defer></script>', esc_url( $src ) );
 }
 
