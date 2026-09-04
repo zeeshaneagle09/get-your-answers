@@ -10,14 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Get a reusable author data object for article modules.
+ * Get reusable author data for article modules.
  *
  * @param int|WP_Post|null $post Post.
  * @return array
  */
 function gyad_get_author_data( $post = null ) {
 	$post = get_post( $post );
-
 	if ( ! $post ) {
 		return array();
 	}
@@ -34,6 +33,26 @@ function gyad_get_author_data( $post = null ) {
 }
 
 /**
+ * Get a human-readable content type label.
+ *
+ * @param int|WP_Post|null $post Post.
+ * @return string
+ */
+function gyad_get_content_type_label( $post = null ) {
+	$post = get_post( $post );
+	if ( ! $post ) {
+		return '';
+	}
+
+	if ( function_exists( 'gyad_get_single_config' ) ) {
+		$config = gyad_get_single_config( $post->post_type );
+		return ! empty( $config['label'] ) ? (string) $config['label'] : 'Education';
+	}
+
+	return 'Education';
+}
+
+/**
  * Get related posts using taxonomy first, then a safe post-type fallback.
  *
  * @param int|WP_Post|null $post Post.
@@ -41,7 +60,7 @@ function gyad_get_author_data( $post = null ) {
  * @return WP_Post[]
  */
 function gyad_get_related_posts( $post = null, $limit = 6 ) {
-	$post = get_post( $post );
+	$post  = get_post( $post );
 	$limit = max( 1, min( 12, (int) $limit ) );
 
 	if ( ! $post ) {
@@ -51,6 +70,16 @@ function gyad_get_related_posts( $post = null, $limit = 6 ) {
 	$config = function_exists( 'gyad_get_single_config' )
 		? gyad_get_single_config( $post->post_type )
 		: array( 'taxonomy' => '' );
+
+	$taxonomy = ! empty( $config['taxonomy'] ) ? $config['taxonomy'] : '';
+	$term_ids = array();
+
+	if ( $taxonomy ) {
+		$terms = get_the_terms( $post->ID, $taxonomy );
+		if ( $terms && ! is_wp_error( $terms ) ) {
+			$term_ids = wp_list_pluck( $terms, 'term_id' );
+		}
+	}
 
 	$args = array(
 		'post_type'           => $post->post_type,
@@ -62,16 +91,6 @@ function gyad_get_related_posts( $post = null, $limit = 6 ) {
 		'orderby'             => 'date',
 		'order'               => 'DESC',
 	);
-
-	$taxonomy = ! empty( $config['taxonomy'] ) ? $config['taxonomy'] : '';
-	$term_ids = array();
-
-	if ( $taxonomy ) {
-		$terms = get_the_terms( $post->ID, $taxonomy );
-		if ( $terms && ! is_wp_error( $terms ) ) {
-			$term_ids = wp_list_pluck( $terms, 'term_id' );
-		}
-	}
 
 	if ( $taxonomy && $term_ids ) {
 		$args['tax_query'] = array(
@@ -113,7 +132,7 @@ function gyad_get_related_posts( $post = null, $limit = 6 ) {
  * @return WP_Post[]
  */
 function gyad_get_more_from_author( $post = null, $limit = 4 ) {
-	$post = get_post( $post );
+	$post  = get_post( $post );
 	$limit = max( 1, min( 8, (int) $limit ) );
 
 	if ( ! $post || ! $post->post_author ) {
@@ -136,21 +155,21 @@ function gyad_get_more_from_author( $post = null, $limit = 4 ) {
 }
 
 /**
- * Get more posts from the primary category/taxonomy.
+ * Get more posts from the current primary taxonomy.
  *
  * @param int|WP_Post|null $post Post.
  * @param int              $limit Number of posts.
  * @return WP_Post[]
  */
 function gyad_get_more_from_category( $post = null, $limit = 4 ) {
-	$post = get_post( $post );
+	$post  = get_post( $post );
 	$limit = max( 1, min( 8, (int) $limit ) );
 
 	if ( ! $post || ! function_exists( 'gyad_get_single_config' ) ) {
 		return array();
 	}
 
-	$config = gyad_get_single_config( $post->post_type );
+	$config   = gyad_get_single_config( $post->post_type );
 	$taxonomy = ! empty( $config['taxonomy'] ) ? $config['taxonomy'] : '';
 
 	if ( ! $taxonomy ) {
@@ -184,7 +203,7 @@ function gyad_get_more_from_category( $post = null, $limit = 4 ) {
 }
 
 /**
- * Build a lightweight table of contents from rendered article HTML.
+ * Build a table of contents and make heading IDs deterministic.
  *
  * @param string $content Content HTML.
  * @return array
@@ -199,7 +218,7 @@ function gyad_get_table_of_contents( $content = '' ) {
 	}
 
 	$items = array();
-	$used = array();
+	$used  = array();
 
 	foreach ( $matches as $match ) {
 		$level = (int) $match[1];
@@ -209,12 +228,15 @@ function gyad_get_table_of_contents( $content = '' ) {
 		}
 
 		$id = sanitize_title( $title );
-		$base = $id;
+		$base = $id ? $id : 'section';
+		$id = $base;
 		$index = 2;
+
 		while ( isset( $used[ $id ] ) ) {
 			$id = $base . '-' . $index;
 			$index++;
 		}
+
 		$used[ $id ] = true;
 
 		$items[] = array(
@@ -228,6 +250,55 @@ function gyad_get_table_of_contents( $content = '' ) {
 }
 
 /**
+ * Add IDs to article H2/H3 headings while preserving existing IDs.
+ *
+ * @param string $content Content HTML.
+ * @return string
+ */
+function gyad_add_article_heading_ids( $content ) {
+	if ( ! $content || false === strpos( $content, '<h' ) ) {
+		return $content;
+	}
+
+	$used = array();
+	$index = 0;
+
+	return preg_replace_callback(
+		'/<h([23])([^>]*)>(.*?)<\/h\1>/is',
+		function ( $match ) use ( &$used, &$index ) {
+			$attributes = $match[2];
+			$title      = trim( wp_strip_all_tags( $match[3] ) );
+
+			if ( preg_match( '/\sid=["\']([^"\']+)["\']/i', $attributes, $id_match ) ) {
+				$existing = sanitize_title( $id_match[1] );
+				if ( $existing ) {
+					$used[ $existing ] = true;
+				}
+				return $match[0];
+			}
+
+			$base = sanitize_title( $title );
+			$base = $base ? $base : 'section-' . ( $index + 1 );
+			$id   = $base;
+			$suffix = 2;
+
+			while ( isset( $used[ $id ] ) ) {
+				$id = $base . '-' . $suffix;
+				$suffix++;
+			}
+
+			$used[ $id ] = true;
+			$index++;
+
+			return '<h' . $match[1] . $attributes . ' id="' . esc_attr( $id ) . '">' . $match[3] . '</h' . $match[1] . '>';
+		},
+		$content
+	);
+}
+
+add_filter( 'the_content', 'gyad_add_article_heading_ids', 20 );
+
+/**
  * Get share URLs for the current article.
  *
  * @param int|WP_Post|null $post Post.
@@ -239,7 +310,7 @@ function gyad_get_share_urls( $post = null ) {
 		return array();
 	}
 
-	$url = get_permalink( $post );
+	$url   = get_permalink( $post );
 	$title = get_the_title( $post );
 
 	return array(
@@ -252,7 +323,7 @@ function gyad_get_share_urls( $post = null ) {
 }
 
 /**
- * Get normalized education-specific metadata for a single article.
+ * Get normalized education-specific metadata.
  *
  * @param int|WP_Post|null $post Post.
  * @return array
@@ -290,7 +361,39 @@ function gyad_get_content_meta( $post = null ) {
 }
 
 /**
- * Get official source information as a consistent array.
+ * Get deadline/status information for deadline-driven content.
+ *
+ * @param int|WP_Post|null $post Post.
+ * @return array
+ */
+function gyad_get_deadline_status( $post = null ) {
+	$post = get_post( $post );
+	if ( ! $post || ! function_exists( 'gyad_get_single_primary_date' ) ) {
+		return array();
+	}
+
+	$date = gyad_get_single_primary_date( $post );
+	if ( ! $date ) {
+		return array();
+	}
+
+	$state = function_exists( 'gyad_get_single_date_state' )
+		? gyad_get_single_date_state( $date )
+		: '';
+
+	$text = function_exists( 'gyad_get_single_date_status_text' )
+		? gyad_get_single_date_status_text( $date )
+		: '';
+
+	return array(
+		'date'  => $date,
+		'state' => $state,
+		'text'  => $text,
+	);
+}
+
+/**
+ * Get official source information.
  *
  * @param int|WP_Post|null $post Post.
  * @return array
@@ -314,9 +417,9 @@ function gyad_get_official_source( $post = null ) {
 }
 
 /**
- * Add native Web Share and copy-link data attributes to the page.
+ * Data helper for native Web Share/bookmark consumers.
  *
- * @param array $data Data passed to wp_localize_script-like consumers.
+ * @param array $data Data.
  * @return array
  */
 function gyad_single_share_data( $data = array() ) {
