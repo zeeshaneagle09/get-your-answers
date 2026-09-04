@@ -1,0 +1,80 @@
+:root {
+	/* =========================================================
+	   COLORS
+	   ========================================================= */
+
+	--color-navy: #071b3a;
+	--color-navy-dark: #06152e;
+
+	--color-blue: #1469e8;
+	--color-blue-dark: #0f57c7;
+	--color-blue-light: #eaf3ff;
+
+	--color-green: #12a56b;
+	--color-purple: #7045d8;
+	--color-orange: #ff9700;
+	--color-teal: #0e9da7;
+
+	--color-background: #f6f8fc;
+	--color-white: #ffffff;
+
+	--color-text: #15233b;
+	--color-text-muted: #6e7c91;
+
+	--color-border: #e4e9f1;
+
+
+	/* =========================================================
+	   LAYOUT
+	   ========================================================= */
+
+	--container-width: 1380px;
+	--container-padding: 20px;
+
+	--section-space: 72px;
+	--section-space-mobile: 48px;
+
+
+	/* =========================================================
+	   RADII
+	   ========================================================= */
+
+	--radius-xs: 4px;
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-lg: 14px;
+	--radius-xl: 18px;
+
+
+	/* =========================================================
+	   SHADOWS
+	   ========================================================= */
+
+	--shadow-soft: 0 6px 24px rgba(7, 27, 58, 0.055);
+	--shadow-card: 0 10px 30px rgba(7, 27, 58, 0.07);
+	--shadow-hover: 0 16px 36px rgba(7, 27, 58, 0.11);
+
+
+	/* =========================================================
+	   TYPOGRAPHY
+	   ========================================================= */
+
+	--font-primary:
+		"Poppins",
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		sans-serif;
+
+	--font-size-body: 14px;
+	--line-height-body: 1.65;
+
+
+	/* =========================================================
+	   TRANSITIONS
+	   ========================================================= */
+
+	--transition-fast: 150ms ease;
+	--transition-base: 200ms ease;
+	--transition-slow: 300ms ease;
+}

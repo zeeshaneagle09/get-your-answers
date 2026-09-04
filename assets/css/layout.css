@@ -1,0 +1,116 @@
+/* =========================================================
+   SITE WRAPPER
+   ========================================================= */
+
+.site {
+	display: flex;
+	flex-direction: column;
+
+	min-height: 100vh;
+
+	width: 100%;
+}
+
+.site-main {
+	flex: 1 0 auto;
+
+	width: 100%;
+
+	min-height: 60vh;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.site-content {
+	width: 100%;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section {
+	width: 100%;
+}
+
+.section-inner {
+	width: 100%;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.section-heading {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+
+	gap: 30px;
+
+	margin-bottom: 24px;
+}
+
+.section-heading__eyebrow {
+	display: block;
+
+	margin-bottom: 7px;
+
+	color: var(--color-blue);
+
+	font-size: 0.72rem;
+	font-weight: 800;
+
+	letter-spacing: 0.12em;
+	line-height: 1.2;
+
+	text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CLEARFIX
+   ========================================================= */
+
+.clearfix::after {
+	display: table;
+
+	clear: both;
+
+	content: "";
+}
+
+
+/* =========================================================
+   RESPONSIVE CONTAINER
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+	.container {
+		padding-inline: 16px;
+	}
+
+	.section-heading {
+		align-items: flex-start;
+		flex-direction: column;
+
+		gap: 8px;
+
+		margin-bottom: 18px;
+	}
+
+}
+
+@media (max-width: 420px) {
+
+	.container {
+		padding-inline: 14px;
+	}
+
+}

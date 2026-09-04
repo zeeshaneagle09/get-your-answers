@@ -1,0 +1,668 @@
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+	position: relative;
+	z-index: 1000;
+
+	width: 100%;
+
+	background: var(--color-white);
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.site-header__topbar {
+	width: 100%;
+	min-height: 36px;
+
+	background: var(--color-navy);
+	color: rgba(255, 255, 255, 0.82);
+}
+
+.site-header__topbar .container {
+	width: 100%;
+	min-height: 36px;
+}
+
+.site-header__topbar-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	width: 100%;
+	min-height: 36px;
+
+	gap: 24px;
+}
+
+.site-header__topbar-left {
+	display: flex;
+	align-items: center;
+
+	flex: 0 0 auto;
+
+	gap: 7px;
+
+	min-width: 0;
+
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.site-header__topbar-right {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+
+	flex: 0 0 auto;
+
+	margin-left: auto;
+
+	gap: 18px;
+}
+
+.site-header__topbar-links {
+	display: flex;
+	align-items: center;
+
+	gap: 20px;
+}
+
+.site-header__topbar-links a {
+	color: rgba(255, 255, 255, 0.72);
+
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 1;
+
+	white-space: nowrap;
+
+	transition: color 150ms ease;
+}
+
+.site-header__topbar-links a:hover,
+.site-header__topbar-links a:focus-visible {
+	color: #ffffff;
+}
+
+.site-header__topbar-social {
+	display: flex;
+	align-items: center;
+
+	gap: 7px;
+}
+
+.site-header__topbar-social a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 18px;
+	height: 18px;
+
+	color: rgba(255, 255, 255, 0.7);
+
+	transition: color 150ms ease;
+}
+
+.site-header__topbar-social a:hover,
+.site-header__topbar-social a:focus-visible {
+	color: #ffffff;
+}
+
+.site-header__topbar-social .gyad-icon {
+	width: 14px;
+	height: 14px;
+}
+
+
+/* =========================================================
+   BRANDING AREA
+   ========================================================= */
+
+.site-branding {
+	width: 100%;
+
+	background: var(--color-white);
+
+	border-bottom: 1px solid var(--color-border);
+}
+
+.site-branding__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	width: 100%;
+
+	min-height: 112px;
+
+	gap: 34px;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.site-branding__logo {
+	display: inline-flex;
+	align-items: center;
+
+	flex: 0 0 auto;
+
+	gap: 12px;
+
+	color: var(--color-navy);
+
+	text-decoration: none;
+}
+
+.site-branding__logo:hover {
+	color: var(--color-navy);
+}
+
+.site-branding__logo-mark {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 46px;
+	height: 46px;
+
+	flex: 0 0 46px;
+
+	border-radius: 10px;
+
+	background: var(--color-blue);
+	color: #ffffff;
+}
+
+.site-branding__logo-mark .gyad-icon {
+	width: 23px;
+	height: 23px;
+}
+
+.site-branding__logo-text {
+	display: flex;
+	flex-direction: column;
+
+	line-height: 0.94;
+}
+
+.site-branding__logo-text span,
+.site-branding__logo-text strong {
+	display: block;
+}
+
+.site-branding__logo-text span {
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+}
+
+.site-branding__logo-text strong {
+	margin: 3px 0;
+
+	color: var(--color-blue);
+
+	font-size: 20px;
+	font-weight: 800;
+	letter-spacing: 0.035em;
+}
+
+
+/* =========================================================
+   HEADER SEARCH
+   ========================================================= */
+
+.header-search {
+	flex: 1 1 auto;
+
+	width: 100%;
+	max-width: 680px;
+
+	min-width: 0;
+}
+
+.header-search__form {
+	display: flex;
+	align-items: stretch;
+
+	width: 100%;
+	min-height: 50px;
+
+	border: 1px solid var(--color-border);
+	border-radius: 8px;
+
+	background: var(--color-white);
+
+	overflow: hidden;
+
+	box-shadow: 0 4px 14px rgba(7, 27, 58, 0.04);
+
+	transition:
+		border-color 160ms ease,
+		box-shadow 160ms ease;
+}
+
+.header-search__form:focus-within {
+	border-color: var(--color-blue);
+
+	box-shadow:
+		0 0 0 3px rgba(20, 105, 232, 0.09),
+		0 4px 14px rgba(7, 27, 58, 0.05);
+}
+
+.header-search__field {
+	display: flex;
+	align-items: center;
+
+	flex: 1 1 auto;
+
+	width: auto;
+	min-width: 0;
+
+	gap: 10px;
+
+	padding: 0 14px;
+}
+
+.header-search__field .gyad-icon {
+	display: inline-flex;
+
+	width: 17px;
+	height: 17px;
+
+	flex: 0 0 17px;
+
+	color: var(--color-text-muted);
+}
+
+.header-search__field input {
+	display: block;
+
+	width: 100%;
+	min-width: 0;
+	height: 48px;
+
+	padding: 0;
+
+	border: 0;
+	outline: 0;
+
+	background: transparent;
+
+	color: var(--color-text);
+
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.header-search__field input::placeholder {
+	color: var(--color-text-muted);
+}
+
+.header-search__select-wrap {
+	position: relative;
+
+	flex: 0 0 160px;
+
+	border-left: 1px solid var(--color-border);
+}
+
+.header-search__category {
+	display: block;
+
+	width: 100%;
+	height: 48px;
+
+	padding: 0 36px 0 13px;
+
+	border: 0;
+	outline: 0;
+
+	background: var(--color-white);
+	color: var(--color-text);
+
+	font-family: inherit;
+	font-size: 12px;
+	font-weight: 600;
+
+	cursor: pointer;
+
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+.header-search__select-wrap::after {
+	content: "";
+
+	position: absolute;
+	top: 50%;
+	right: 13px;
+
+	width: 7px;
+	height: 7px;
+
+	border-right: 1.5px solid var(--color-text-muted);
+	border-bottom: 1.5px solid var(--color-text-muted);
+
+	transform: translateY(-65%) rotate(45deg);
+
+	pointer-events: none;
+}
+
+.header-search__category:focus-visible {
+	outline: 2px solid var(--color-blue);
+	outline-offset: -2px;
+}
+
+.header-search__button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	flex: 0 0 100px;
+
+	min-height: 48px;
+
+	gap: 7px;
+
+	padding: 0 16px;
+
+	border: 0;
+
+	background: var(--color-blue);
+	color: #ffffff;
+
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 700;
+
+	cursor: pointer;
+
+	transition:
+		background-color 160ms ease,
+		transform 160ms ease;
+}
+
+.header-search__button:hover {
+	background: var(--color-blue-dark);
+}
+
+.header-search__button:active {
+	transform: scale(0.985);
+}
+
+.header-search__button:focus-visible {
+	outline: 2px solid #ffffff;
+	outline-offset: -3px;
+}
+
+.header-search__button .gyad-icon {
+	width: 15px;
+	height: 15px;
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+   ========================================================= */
+
+.mobile-menu-button {
+	display: none;
+
+	position: relative;
+
+	flex: 0 0 auto;
+
+	width: 46px;
+	height: 46px;
+
+	padding: 0;
+
+	border: 1px solid var(--color-border);
+	border-radius: 8px;
+
+	background: var(--color-white);
+	color: var(--color-navy);
+
+	cursor: pointer;
+
+	-webkit-tap-highlight-color: transparent;
+
+	transition:
+		border-color 160ms ease,
+		background-color 160ms ease,
+		color 160ms ease,
+		transform 160ms ease;
+}
+
+.mobile-menu-button:hover {
+	border-color: var(--color-blue);
+	color: var(--color-blue);
+}
+
+.mobile-menu-button:focus-visible {
+	outline: 2px solid var(--color-blue);
+	outline-offset: 2px;
+}
+
+.mobile-menu-button:active {
+	transform: scale(0.97);
+}
+
+.mobile-menu-button__line {
+	position: absolute;
+	left: 50%;
+
+	width: 19px;
+	height: 2px;
+
+	border-radius: 999px;
+
+	background: currentColor;
+
+	transform: translateX(-50%);
+
+	transition:
+		top 180ms ease,
+		transform 180ms ease,
+		opacity 180ms ease;
+}
+
+.mobile-menu-button__line:nth-child(1) {
+	top: 14px;
+}
+
+.mobile-menu-button__line:nth-child(2) {
+	top: 21px;
+}
+
+.mobile-menu-button__line:nth-child(3) {
+	top: 28px;
+}
+
+
+/* =========================================================
+   MOBILE MENU OPEN ICON
+   ========================================================= */
+
+.mobile-menu-button[aria-expanded="true"]
+.mobile-menu-button__line:nth-child(1) {
+	top: 21px;
+
+	transform:
+		translateX(-50%)
+		rotate(45deg);
+}
+
+.mobile-menu-button[aria-expanded="true"]
+.mobile-menu-button__line:nth-child(2) {
+	opacity: 0;
+}
+
+.mobile-menu-button[aria-expanded="true"]
+.mobile-menu-button__line:nth-child(3) {
+	top: 21px;
+
+	transform:
+		translateX(-50%)
+		rotate(-45deg);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+	.site-branding__inner {
+		gap: 20px;
+	}
+
+	.site-branding__logo-mark {
+		width: 42px;
+		height: 42px;
+
+		flex-basis: 42px;
+	}
+
+	.site-branding__logo-text strong {
+		font-size: 18px;
+	}
+
+	.header-search {
+		max-width: 600px;
+	}
+
+	.header-search__select-wrap {
+		flex-basis: 145px;
+	}
+
+	.header-search__button {
+		flex-basis: 90px;
+	}
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+	.site-header__topbar {
+		display: none;
+	}
+
+	.site-branding__inner {
+		min-height: 72px;
+
+		gap: 10px;
+	}
+
+	.site-branding__logo {
+		gap: 9px;
+	}
+
+	.site-branding__logo-mark {
+		width: 38px;
+		height: 38px;
+
+		flex-basis: 38px;
+
+		border-radius: 8px;
+	}
+
+	.site-branding__logo-mark .gyad-icon {
+		width: 20px;
+		height: 20px;
+	}
+
+	.site-branding__logo-text span {
+		font-size: 8px;
+	}
+
+	.site-branding__logo-text strong {
+		margin: 2px 0;
+
+		font-size: 14px;
+
+		letter-spacing: 0.02em;
+	}
+
+	.header-search {
+		display: none;
+	}
+
+	.mobile-menu-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+	.site-branding__inner {
+		min-height: 66px;
+	}
+
+	.site-branding__logo-mark {
+		width: 36px;
+		height: 36px;
+
+		flex-basis: 36px;
+	}
+
+	.site-branding__logo-text strong {
+		font-size: 13px;
+	}
+
+	.site-branding__logo-text span {
+		font-size: 7px;
+	}
+
+	.mobile-menu-button {
+		width: 42px;
+		height: 42px;
+	}
+
+	.mobile-menu-button__line {
+		width: 18px;
+	}
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+	.header-search__form,
+	.header-search__button,
+	.mobile-menu-button,
+	.mobile-menu-button__line {
+		transition: none;
+	}
+
+}

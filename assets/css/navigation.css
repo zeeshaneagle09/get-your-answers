@@ -1,0 +1,443 @@
+/* =========================================================
+   MAIN NAVIGATION
+   ========================================================= */
+
+.main-navigation {
+	background: var(--color-navy);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.main-navigation__inner {
+	min-height: 52px;
+}
+
+.main-menu {
+	min-height: 52px;
+}
+
+.primary-menu {
+	display: flex;
+	align-items: stretch;
+
+	width: 100%;
+
+	margin: 0;
+	padding: 0;
+
+	list-style: none;
+}
+
+.primary-menu > li {
+	position: relative;
+
+	display: flex;
+
+	flex: 0 0 auto;
+}
+
+.primary-menu > li > a {
+	display: inline-flex;
+	align-items: center;
+
+	gap: 7px;
+
+	min-height: 52px;
+
+	padding: 0 14px;
+
+	border-bottom: 2px solid transparent;
+
+	color: rgba(255, 255, 255, 0.9);
+
+	font-size: 12px;
+	font-weight: 650;
+	line-height: 1;
+
+	white-space: nowrap;
+
+	transition:
+		background-color 160ms ease,
+		color 160ms ease,
+		border-color 160ms ease;
+}
+
+.primary-menu > li > a:hover,
+.primary-menu > li > a:focus-visible {
+	background: rgba(255, 255, 255, 0.06);
+	color: #ffffff;
+	outline: none;
+}
+
+.primary-menu > li.current-menu-item > a,
+.primary-menu > li.current_page_item > a,
+.primary-menu > li.current-menu-ancestor > a,
+.primary-menu > li.current-menu-parent > a {
+	background: var(--color-blue);
+	border-bottom-color: #ffffff;
+	color: #ffffff;
+}
+
+.primary-menu > li > a > .gyad-icon {
+	width: 11px;
+	height: 11px;
+
+	opacity: 0.72;
+
+	transition: transform 160ms ease;
+}
+
+.primary-menu > li:hover > a > .gyad-icon,
+.primary-menu > li:focus-within > a > .gyad-icon {
+	transform: translateY(1px);
+}
+
+
+/* =========================================================
+   NOTIFICATION
+   ========================================================= */
+
+.primary-menu__notification {
+	margin-left: auto;
+}
+
+.primary-menu__notification > a {
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
+
+	width: 52px;
+	height: 52px;
+
+	padding: 0 !important;
+
+	color: rgba(255, 255, 255, 0.88);
+}
+
+.primary-menu__notification > a:hover,
+.primary-menu__notification > a:focus-visible {
+	background: rgba(255, 255, 255, 0.08) !important;
+	color: #ffffff;
+	outline: none;
+}
+
+.primary-menu__notification .gyad-icon {
+	display: inline-flex;
+
+	width: 22px !important;
+	height: 22px !important;
+}
+
+.primary-menu__notification .gyad-icon svg {
+	width: 22px !important;
+	height: 22px !important;
+
+	fill: none !important;
+	stroke: currentColor !important;
+
+	stroke-width: 1.8;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   SUBMENU
+   ========================================================= */
+
+.primary-menu .menu-item-has-children > a {
+	cursor: pointer;
+}
+
+.primary-menu .sub-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 999;
+
+	display: none;
+
+	width: 235px;
+
+	margin: 0;
+	padding: 8px 0;
+
+	list-style: none;
+
+	border: 1px solid var(--color-border);
+	border-top: 2px solid var(--color-blue);
+	border-radius: 0 0 8px 8px;
+
+	background: var(--color-white);
+
+	box-shadow: 0 18px 38px rgba(7, 27, 58, 0.14);
+}
+
+.primary-menu li:hover > .sub-menu,
+.primary-menu li:focus-within > .sub-menu {
+	display: block;
+}
+
+.primary-menu .sub-menu li {
+	display: block;
+	width: 100%;
+}
+
+.primary-menu .sub-menu a {
+	display: flex;
+	align-items: center;
+
+	width: 100%;
+
+	padding: 11px 16px;
+
+	color: var(--color-text);
+
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1.4;
+
+	transition:
+		background-color 150ms ease,
+		color 150ms ease;
+}
+
+.primary-menu .sub-menu a:hover,
+.primary-menu .sub-menu a:focus-visible {
+	background: var(--color-blue-light);
+	color: var(--color-blue);
+	outline: none;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 1101px) {
+
+	.primary-menu > li > a {
+		padding-inline: 13px;
+	}
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+	.primary-menu > li > a {
+		padding-inline: 9px;
+		font-size: 11px;
+	}
+
+	.primary-menu__notification > a {
+		width: 46px;
+	}
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+	.main-navigation {
+		display: none;
+
+		border-bottom: 0;
+
+		box-shadow: 0 14px 30px rgba(7, 27, 58, 0.16);
+	}
+
+	.main-navigation.is-visible {
+		display: block;
+	}
+
+	.main-menu {
+		min-height: 0;
+		padding-bottom: 8px;
+	}
+
+	.primary-menu {
+		display: flex;
+		flex-direction: column;
+
+		width: 100%;
+	}
+
+	.primary-menu > li {
+		display: block;
+		width: 100%;
+	}
+
+	.primary-menu > li > a {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		width: 100%;
+		min-height: 48px;
+
+		padding: 0 14px;
+
+		font-size: 13px;
+		font-weight: 600;
+
+		border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+	}
+
+	.primary-menu > li.current-menu-item > a,
+	.primary-menu > li.current_page_item > a,
+	.primary-menu > li.current-menu-ancestor > a,
+	.primary-menu > li.current-menu-parent > a {
+		border-bottom-color: transparent;
+	}
+
+	.primary-menu > li > a > .gyad-icon {
+		width: 12px;
+		height: 12px;
+	}
+
+	.primary-menu__notification {
+		margin-left: 0;
+	}
+
+	.primary-menu__notification > a {
+		width: 100%;
+		height: 48px;
+
+		justify-content: flex-start;
+
+		padding-inline: 14px !important;
+	}
+
+	.primary-menu__notification .gyad-icon {
+		width: 21px !important;
+		height: 21px !important;
+	}
+
+	.primary-menu__notification .gyad-icon svg {
+		width: 21px !important;
+		height: 21px !important;
+	}
+
+
+	/* ---------------------------------------------------------
+	   MOBILE SUBMENU
+	   --------------------------------------------------------- */
+
+	.primary-menu .sub-menu {
+		position: static;
+
+		display: none;
+
+		width: 100%;
+
+		padding: 0;
+
+		border: 0;
+		border-radius: 0;
+
+		box-shadow: none;
+
+		background: rgba(0, 0, 0, 0.14);
+	}
+
+	.primary-menu li:hover > .sub-menu,
+	.primary-menu li:focus-within > .sub-menu {
+		display: none;
+	}
+
+	.primary-menu li.menu-item-has-children.is-open > .sub-menu {
+		display: block;
+	}
+
+	.primary-menu .sub-menu a {
+		min-height: 42px;
+
+		padding: 0 28px;
+
+		color: rgba(255, 255, 255, 0.8);
+
+		font-size: 12px;
+		font-weight: 500;
+	}
+
+	.primary-menu .sub-menu a:hover,
+	.primary-menu .sub-menu a:focus-visible {
+		background: rgba(255, 255, 255, 0.06);
+		color: #ffffff;
+	}
+
+
+	/* ---------------------------------------------------------
+	   MOBILE MENU BUTTON
+	   --------------------------------------------------------- */
+
+	.mobile-menu-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 46px;
+		height: 46px;
+
+		padding: 0;
+
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+
+		background: var(--color-white);
+		color: var(--color-navy);
+
+		cursor: pointer;
+
+		-webkit-tap-highlight-color: transparent;
+
+		transition:
+			background-color 160ms ease,
+			color 160ms ease,
+			border-color 160ms ease,
+			transform 160ms ease;
+	}
+
+	.mobile-menu-button:hover {
+		border-color: var(--color-blue);
+		color: var(--color-blue);
+	}
+
+	.mobile-menu-button:focus-visible {
+		outline: 2px solid var(--color-blue);
+		outline-offset: 2px;
+	}
+
+	.mobile-menu-button:active {
+		transform: scale(0.97);
+	}
+
+	html.menu-open {
+		overflow: hidden;
+	}
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+	.primary-menu > li > a,
+	.primary-menu > li > a > .gyad-icon,
+	.primary-menu .sub-menu a,
+	.mobile-menu-button {
+		transition: none;
+	}
+
+}

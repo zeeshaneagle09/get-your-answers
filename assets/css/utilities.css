@@ -1,0 +1,206 @@
+/* =========================================================
+   GYAD UTILITIES
+   ========================================================= */
+
+
+/* =========================================================
+   VISIBILITY
+   ========================================================= */
+
+.is-hidden {
+	display: none !important;
+}
+
+.is-visible {
+	display: block !important;
+}
+
+@media (max-width: 700px) {
+
+	.hide-mobile {
+		display: none !important;
+	}
+
+}
+
+@media (min-width: 701px) {
+
+	.hide-desktop {
+		display: none !important;
+	}
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.screen-reader-text,
+.screen-reader-only {
+	position: absolute !important;
+
+	width: 1px !important;
+	height: 1px !important;
+
+	padding: 0 !important;
+	margin: -1px !important;
+
+	overflow: hidden !important;
+
+	clip: rect(0, 0, 0, 0) !important;
+	clip-path: inset(50%) !important;
+
+	white-space: nowrap !important;
+
+	border: 0 !important;
+}
+
+
+/* =========================================================
+   WIDTH
+   ========================================================= */
+
+.full-width {
+	width: 100% !important;
+}
+
+
+/* =========================================================
+   ALIGNMENT
+   ========================================================= */
+
+.text-left {
+	text-align: left !important;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+.text-right {
+	text-align: right !important;
+}
+
+
+/* =========================================================
+   FLEX
+   ========================================================= */
+
+.flex {
+	display: flex !important;
+}
+
+.flex-center {
+	display: flex !important;
+
+	align-items: center;
+	justify-content: center;
+}
+
+.flex-between {
+	display: flex !important;
+
+	align-items: center;
+	justify-content: space-between;
+}
+
+.flex-column {
+	flex-direction: column !important;
+}
+
+
+/* =========================================================
+   GAPS
+   ========================================================= */
+
+.gap-xs {
+	gap: 6px !important;
+}
+
+.gap-sm {
+	gap: 10px !important;
+}
+
+.gap-md {
+	gap: 16px !important;
+}
+
+.gap-lg {
+	gap: 24px !important;
+}
+
+.gap-xl {
+	gap: 32px !important;
+}
+
+
+/* =========================================================
+   INTERACTION
+   ========================================================= */
+
+.pointer {
+	cursor: pointer !important;
+}
+
+.no-pointer {
+	pointer-events: none !important;
+}
+
+.no-scroll {
+	overflow: hidden !important;
+}
+
+
+/* =========================================================
+   WORDPRESS ALIGNMENT
+   ========================================================= */
+
+.alignleft {
+	float: left;
+
+	margin: 0 1.5rem 1rem 0;
+}
+
+.alignright {
+	float: right;
+
+	margin: 0 0 1rem 1.5rem;
+}
+
+.aligncenter {
+	display: block;
+
+	margin-inline: auto;
+}
+
+
+/* =========================================================
+   CLEARFIX
+   ========================================================= */
+
+.clearfix::after {
+	display: table;
+
+	clear: both;
+
+	content: "";
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+	.alignleft,
+	.alignright {
+		float: none;
+
+		display: block;
+
+		margin-inline: 0;
+	}
+
+}

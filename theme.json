@@ -1,0 +1,119 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.6/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"border": {
+			"radius": true,
+			"color": true,
+			"style": true,
+			"width": true
+		},
+		"color": {
+			"defaultPalette": false,
+			"palette": [
+				{
+					"slug": "navy",
+					"color": "#071B3A",
+					"name": "Navy"
+				},
+				{
+					"slug": "navy-dark",
+					"color": "#06152E",
+					"name": "Navy Dark"
+				},
+				{
+					"slug": "blue",
+					"color": "#1469E8",
+					"name": "Blue"
+				},
+				{
+					"slug": "blue-light",
+					"color": "#EAF3FF",
+					"name": "Blue Light"
+				},
+				{
+					"slug": "green",
+					"color": "#12A56B",
+					"name": "Green"
+				},
+				{
+					"slug": "purple",
+					"color": "#7045D8",
+					"name": "Purple"
+				},
+				{
+					"slug": "orange",
+					"color": "#FF9700",
+					"name": "Orange"
+				},
+				{
+					"slug": "teal",
+					"color": "#0E9DA7",
+					"name": "Teal"
+				},
+				{
+					"slug": "white",
+					"color": "#FFFFFF",
+					"name": "White"
+				},
+				{
+					"slug": "background",
+					"color": "#F6F8FC",
+					"name": "Background"
+				},
+				{
+					"slug": "text",
+					"color": "#15233B",
+					"name": "Text"
+				},
+				{
+					"slug": "muted",
+					"color": "#6E7C91",
+					"name": "Muted"
+				},
+				{
+					"slug": "border",
+					"color": "#E4E9F1",
+					"name": "Border"
+				}
+			]
+		},
+		"layout": {
+			"contentSize": "760px",
+			"wideSize": "1380px"
+		},
+		"spacing": {
+			"blockGap": "1.5rem",
+			"units": [
+				"px",
+				"rem",
+				"em",
+				"%"
+			]
+		},
+		"typography": {
+			"dropCap": false,
+			"fluid": false,
+			"fontFamilies": [
+				{
+					"fontFamily": "Poppins, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+					"slug": "poppins",
+					"name": "Poppins"
+				}
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "#F6F8FC",
+			"text": "#15233B"
+		},
+		"spacing": {
+			"blockGap": "1.5rem"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--poppins)"
+		}
+	}
+}

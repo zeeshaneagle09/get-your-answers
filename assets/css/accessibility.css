@@ -1,0 +1,77 @@
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+
+/* =========================================================
+   SKIP LINK
+   ========================================================= */
+
+.skip-link {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	z-index: 10000;
+
+	transform: translateY(-160%);
+
+	padding: 10px 14px;
+
+	border-radius: 8px;
+
+	background: var(--color-navy);
+	color: #ffffff;
+
+	font-size: 12px;
+	font-weight: 700;
+
+	box-shadow: 0 10px 30px rgba(7, 27, 58, 0.18);
+
+	transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+	transform: translateY(0);
+
+	color: #ffffff;
+
+	outline: 2px solid #ffffff;
+	outline-offset: 2px;
+}
+
+.gyad-skip-target {
+	position: absolute;
+
+	width: 1px;
+	height: 1px;
+
+	overflow: hidden;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+	outline: 2px solid var(--color-blue);
+	outline-offset: 3px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+	.skip-link {
+		transition: none;
+	}
+
+}

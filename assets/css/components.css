@@ -1,0 +1,184 @@
+/* =========================================================
+   GLOBAL COMPONENTS
+   ========================================================= */
+
+
+/* =========================================================
+   INLINE SVG ICON SYSTEM
+   ========================================================= */
+
+.gyad-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 18px;
+	height: 18px;
+
+	flex: 0 0 auto;
+
+	line-height: 0;
+
+	color: currentColor;
+}
+
+.gyad-icon svg {
+	display: block;
+
+	width: 100%;
+	height: 100%;
+
+	max-width: none;
+
+	fill: currentColor;
+	stroke: currentColor;
+
+	overflow: visible;
+}
+
+
+/* ---------------------------------------------------------
+   OUTLINE ICONS
+   --------------------------------------------------------- */
+
+.gyad-icon svg circle,
+.gyad-icon svg path,
+.gyad-icon svg rect,
+.gyad-icon svg line,
+.gyad-icon svg polyline,
+.gyad-icon svg polygon {
+	vector-effect: non-scaling-stroke;
+}
+
+
+/* Search / arrows / chevrons / menu / instagram / bell */
+
+.gyad-icon svg[fill="none"] {
+	fill: none;
+}
+
+.gyad-icon svg[fill="none"] path,
+.gyad-icon svg[fill="none"] circle,
+.gyad-icon svg[fill="none"] rect {
+	fill: none;
+	stroke: currentColor;
+}
+
+
+/* =========================================================
+   ICON SIZE MODIFIERS
+   ========================================================= */
+
+.gyad-icon--xs {
+	width: 12px;
+	height: 12px;
+}
+
+.gyad-icon--sm {
+	width: 14px;
+	height: 14px;
+}
+
+.gyad-icon--md {
+	width: 18px;
+	height: 18px;
+}
+
+.gyad-icon--lg {
+	width: 22px;
+	height: 22px;
+}
+
+.gyad-icon--xl {
+	width: 28px;
+	height: 28px;
+}
+
+
+/* =========================================================
+   GENERAL BUTTON RESET
+   ========================================================= */
+
+button {
+	font-family: inherit;
+}
+
+
+/* =========================================================
+   WORDPRESS RESPONSIVE MEDIA
+   ========================================================= */
+
+.wp-caption {
+	max-width: 100%;
+}
+
+.wp-caption img {
+	display: block;
+}
+
+.wp-caption-text {
+	margin-top: 8px;
+
+	color: var(--color-text-muted);
+
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+
+/* =========================================================
+   EMBEDS
+   ========================================================= */
+
+.wp-block-embed {
+	max-width: 100%;
+}
+
+.wp-block-embed iframe {
+	display: block;
+
+	width: 100%;
+	max-width: 100%;
+}
+
+
+/* =========================================================
+   BASIC CONTENT ELEMENTS
+   ========================================================= */
+
+hr {
+	height: 1px;
+
+	margin: 32px 0;
+
+	border: 0;
+
+	background: var(--color-border);
+}
+
+
+/* =========================================================
+   ACCESSIBLE FOCUS
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+	outline: 2px solid var(--color-blue);
+	outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+	.gyad-icon {
+		transition: none !important;
+	}
+
+}

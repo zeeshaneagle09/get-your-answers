@@ -1,0 +1,198 @@
+/* =========================================================
+   TYPOGRAPHY SYSTEM
+   ========================================================= */
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0;
+
+	color: var(--color-navy);
+
+	font-weight: 800;
+
+	letter-spacing: -0.025em;
+
+	text-wrap: balance;
+}
+
+h1 {
+	font-size: clamp(
+		2.4rem,
+		5vw,
+		4rem
+	);
+
+	line-height: 1.08;
+}
+
+h2 {
+	font-size: clamp(
+		1.8rem,
+		3.2vw,
+		2.5rem
+	);
+
+	line-height: 1.18;
+}
+
+h3 {
+	font-size: 1.35rem;
+
+	line-height: 1.28;
+}
+
+h4 {
+	font-size: 1.1rem;
+
+	line-height: 1.35;
+}
+
+h5 {
+	font-size: 1rem;
+
+	line-height: 1.4;
+}
+
+h6 {
+	font-size: 0.9rem;
+
+	line-height: 1.4;
+}
+
+
+/* =========================================================
+   PARAGRAPHS
+   ========================================================= */
+
+p {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a {
+	text-decoration-thickness: 1px;
+	text-underline-offset: 3px;
+}
+
+
+/* =========================================================
+   SMALL TEXT
+   ========================================================= */
+
+small {
+	font-size: 0.82em;
+}
+
+strong,
+b {
+	font-weight: 700;
+}
+
+
+/* =========================================================
+   CODE
+   ========================================================= */
+
+code,
+kbd,
+pre {
+	font-family:
+		ui-monospace,
+		SFMono-Regular,
+		Menlo,
+		Monaco,
+		Consolas,
+		"Liberation Mono",
+		"Courier New",
+		monospace;
+}
+
+code {
+	padding: 0.15em 0.35em;
+
+	border-radius: 4px;
+
+	background: #eef2f7;
+
+	font-size: 0.88em;
+}
+
+pre {
+	max-width: 100%;
+
+	margin: 1.5rem 0;
+
+	padding: 18px;
+
+	overflow-x: auto;
+
+	border-radius: 10px;
+
+	background: var(--color-navy);
+	color: #ffffff;
+
+	font-size: 13px;
+	line-height: 1.7;
+}
+
+
+/* =========================================================
+   BLOCKQUOTE
+   ========================================================= */
+
+blockquote {
+	margin-inline: 0;
+}
+
+
+/* =========================================================
+   LISTS
+   ========================================================= */
+
+ul,
+ol {
+	line-height: 1.7;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+	h1 {
+		font-size: clamp(
+			2rem,
+			9vw,
+			2.8rem
+		);
+	}
+
+	h2 {
+		font-size: clamp(
+			1.5rem,
+			7vw,
+			2rem
+		);
+	}
+
+	h3 {
+		font-size: 1.2rem;
+	}
+
+}
