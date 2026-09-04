@@ -1,0 +1,70 @@
+/* =========================================================
+   PREMIUM CARD INTERACTIONS
+   ========================================================= */
+
+.category-card,
+.news-card,
+.deadline-card,
+.compact-item,
+.trending-panel,
+.archive-card,
+.homepage-featured__side-item,
+.homepage-quick-access__item {
+	-webkit-tap-highlight-color: transparent;
+}
+
+.category-card:focus-within,
+.news-card:focus-within,
+.deadline-card:focus-within,
+.archive-card:focus-within,
+.homepage-featured__side-item:focus-within,
+.homepage-quick-access__item:focus-within {
+	border-color: rgba(20,105,232,.38);
+	box-shadow: 0 0 0 3px rgba(20,105,232,.10), var(--gyad-shadow-hover, 0 16px 36px rgba(7,27,58,.10));
+}
+
+.news-card__title a,
+.deadline-card__title a,
+.compact-item__title a,
+.archive-card a,
+.category-card__action,
+.homepage-featured__side-content h3 a {
+	text-decoration-thickness: 1px;
+	text-underline-offset: 3px;
+}
+
+.news-card__title a:hover,
+.deadline-card__title a:hover,
+.compact-item__title a:hover,
+.archive-card a:hover,
+.homepage-featured__side-content h3 a:hover {
+	text-decoration: underline;
+}
+
+.category-card__action:hover,
+.category-card__action:focus-visible {
+	transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+	.category-card:hover,
+	.news-card:hover,
+	.deadline-card:hover,
+	.homepage-featured__side-item:hover,
+	.homepage-quick-access__item:hover {
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.category-card,
+	.news-card,
+	.deadline-card,
+	.compact-item,
+	.trending-panel,
+	.archive-card,
+	.homepage-featured__side-item,
+	.homepage-quick-access__item {
+		transition: none !important;
+	}
+}
